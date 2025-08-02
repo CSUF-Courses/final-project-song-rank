@@ -7,13 +7,18 @@ const { Server } = require('socket.io');
 
 const app = express();
 const server = http.createServer(app);
-app.use(cors());
+app.use(cors({
+  origin: 'https://sweet-stardust-eba547.netlify.app',
+  methods: ['GET', 'POST', 'PATCH', 'DELETE'],
+  credentials: true
+}));
 app.use(express.json());
 
 const io = new Server(server, {
   cors: {
-    origin: '*', // or '*' for dev 'http://localhost:5173'
-    methods: ['GET', 'POST', 'PATCH', 'DELETE']
+    origin: 'https://sweet-stardust-eba547.netlify.app', // or '*' for dev 'http://localhost:5173'
+    methods: ['GET', 'POST', 'PATCH', 'DELETE'],
+    credentials: true
   }
 });
 
