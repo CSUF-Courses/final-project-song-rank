@@ -9,16 +9,13 @@ const MyList = () => {
   const [error, setError] = useState(null);
   const token = localStorage.getItem('token');
   const navigate = useNavigate();
-  // const [lyrics, setLyrics] = useState('');
-  // const [lyricsLoading, setLyricsLoading] = useState(false);
-  // const [lyricsError, setLyricsError] = useState('');
   const [recommendations, setRecommendations] = useState(null);
   const [loadingRecommendations, setLoadingRecommendations] = useState(false);
   const [recommendationError, setRecommendationError] = useState('');
   const [artistInfo, setArtistInfo] = useState(null);
   const [artistError, setArtistError] = useState('');
 
-  const BASE_URL = `https://final-project-song-rank.onrender.com`;
+  const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
   useEffect(() => {
     if (!token) {
@@ -53,36 +50,6 @@ const MyList = () => {
       setLoading(false);
     }
   };
-
-  // const fetchLyrics = async (song) => {
-  //   setLyrics('');
-  //   setLyricsError('');
-  //   setLyricsLoading(true);
-
-  //   try {
-  //   //   const sanitize = (str) => {
-  //   //     return str
-  //   //       .toLowerCase()
-  //   //       .replace(/ *\([^)]*\) */g, '') // Remove things in parentheses
-  //   //       .replace(/[^a-z0-9 ]/gi, '')   // Remove special chars
-  //   //       .trim();
-  //   //   };
-  //   //   const artistSafe = sanitize(song.artist);
-  //   //   const titleSafe = sanitize(song.name);
-  //     const res = await fetch(`${BASE_URL}/api/lyrics/${encodeURIComponent(song.artist)}/${encodeURIComponent(song.name)}`);
-  //     const data = await res.json();
-
-  //     if (!res.ok) {
-  //       throw new Error(data.error || 'Failed to fetch lyrics');
-  //     }
-
-  //     setLyrics(data.lyrics);
-  //   } catch (err) {
-  //     setLyricsError(err.message);
-  //   } finally {
-  //     setLyricsLoading(false);
-  //   }
-  // };
 
   const fetchArtistInfo = async (song) => {
     setArtistInfo(null);
